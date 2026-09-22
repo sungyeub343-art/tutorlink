@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">동화세상에듀코 로고</title>
+  <desc id="desc">떠오르는 해와 펼친 책, 성장의 길을 형상화한 심볼</desc>
+  <circle cx="32" cy="32" r="30" fill="#f7f5ee" stroke="#d8ded7" stroke-width="2"/>
+  <circle cx="32" cy="18" r="6" fill="#e96b4b"/>
+  <path d="M12 29c8-3 15-1 20 5 5-6 12-8 20-5v20c-8-3-15-1-20 5-5-6-12-8-20-5V29Z" fill="#173f32"/>
+  <path d="M16 33c6-1 11 1 16 6 5-5 10-7 16-6v11c-6-1-11 1-16 6-5-5-10-7-16-6V33Z" fill="#f7f5ee"/>
+  <path d="M32 34v16" fill="none" stroke="#e96b4b" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
