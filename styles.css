@@ -102,7 +102,8 @@ h2 em { color: var(--coral); font-style: normal; }
 .area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .area-copy > p:not(.section-label) { max-width: 520px; margin: 28px 0; color: #c7d3cd; }
 .area-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.area-tags span { padding: 7px 13px; border: 1px solid rgba(255,255,255,.25); font-size: 12px; }
+.area-tags a { padding: 7px 13px; border: 1px solid rgba(255,255,255,.25); font-size: 12px; transition: color .2s, background .2s; }
+.area-tags a:hover, .area-tags a:focus-visible { color: var(--forest); background: white; }
 .area-visual { position: relative; min-height: 500px; border-left: 1px solid rgba(255,255,255,.16); }
 .map-lines { position: absolute; inset: 8% 4% 8% 12%; opacity: .35; background-image: linear-gradient(rgba(255,255,255,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.14) 1px, transparent 1px); background-size: 56px 56px; transform: skewY(-8deg); }
 .map-dot { position: absolute; width: 12px; height: 12px; background: var(--coral); border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 6px rgba(233,107,75,.28); }
