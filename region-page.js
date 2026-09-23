@@ -38,16 +38,40 @@ if (regionRoot) {
     <section class="contact section" id="contact">
       <div class="section-inner contact-layout">
         <div class="contact-copy"><p class="section-label light">FREE TRIAL LESSON</p><h2>${region} 수학과외,<br>편하게 상담하세요.</h2><p>학생에게 필요한 수업인지 무료체험수업으로 먼저 확인할 수 있습니다.</p><a class="contact-phone" href="tel:01029283614"><i data-lucide="phone-call" aria-hidden="true"></i><span><small>지금 전화 상담하기</small><strong>010-2928-3614</strong></span></a></div>
-        <form class="consult-form" id="consult-form"><div class="field-row"><label>학생 이름<input type="text" name="studentName" placeholder="이름" required></label><label>학년<select name="level" required><option value="">선택해 주세요</option><option>중학교 1학년</option><option>중학교 2학년</option><option>중학교 3학년</option></select></label></div><label>연락처<input type="tel" name="phone" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel" required></label><label>학교·거주 지역<input type="text" name="location" placeholder="예: ${region}" required></label><label class="consent"><input type="checkbox" name="privacy" required><span>개인정보 수집 및 상담 활용에 동의합니다.</span></label><button class="submit-button" type="submit">무료체험수업 상담 신청 <i data-lucide="arrow-right" aria-hidden="true"></i></button><p class="form-status" role="status" aria-live="polite"></p></form>
+        <form class="consult-form" id="consult-form"><div class="field-row"><label>학생 이름<input type="text" name="학생_이름" placeholder="이름" required></label><label>학년<select name="학년" required><option value="">선택해 주세요</option><option>중학교 1학년</option><option>중학교 2학년</option><option>중학교 3학년</option></select></label></div><label>연락처<input type="tel" name="연락처" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel" required></label><label>학교·거주 지역<input type="text" name="학교_거주_지역" placeholder="예: ${region}" required></label><label class="consent"><input type="checkbox" name="개인정보_동의" value="동의함" required><span>개인정보 수집 및 상담 활용에 동의합니다.</span></label><button class="submit-button" type="submit">무료체험수업 상담 신청 <i data-lucide="arrow-right" aria-hidden="true"></i></button><p class="form-status" role="status" aria-live="polite"></p></form>
       </div>
     </section>
     <nav class="nearby" aria-label="다른 지역 보기"><div class="section-inner"><h2>다른 ${province} 지역 보기</h2><div class="region-links"><a href="index.html#area">전체 지역 목록</a></div></div></nav>`;
 }
 
-document.querySelector('#consult-form')?.addEventListener('submit', (event) => {
+document.querySelector('#consult-form')?.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const status = event.currentTarget.querySelector('.form-status');
-  status.textContent = '상담 접수 기능 연결을 준비 중입니다. 전화 상담을 이용해 주세요.';
+  const form = event.currentTarget;
+  const status = form.querySelector('.form-status');
+  const submitButton = form.querySelector('.submit-button');
+  const formData = new FormData(form);
+
+  formData.append('_subject', `${document.body.dataset.region || '광주·전남'} 중등 수학과외 무료체험수업 신청`);
+  formData.append('_template', 'table');
+  formData.append('_captcha', 'false');
+  formData.append('page', window.location.href);
+  submitButton.disabled = true;
+  status.textContent = '상담 신청을 전송하고 있습니다.';
+
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/sungyeub343@gmail.com', {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: formData,
+    });
+    if (!response.ok) throw new Error('Submission failed');
+    form.reset();
+    status.textContent = '상담 신청이 접수되었습니다. 확인 후 연락드리겠습니다.';
+  } catch (error) {
+    status.textContent = '전송하지 못했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.';
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 
 window.addEventListener('DOMContentLoaded', () => lucide.createIcons());

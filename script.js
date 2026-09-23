@@ -47,10 +47,34 @@ document.querySelectorAll('.accordion details').forEach((detail) => {
   });
 });
 
-document.querySelector('#consult-form').addEventListener('submit', (event) => {
+document.querySelector('#consult-form').addEventListener('submit', async (event) => {
   event.preventDefault();
-  const status = event.currentTarget.querySelector('.form-status');
-  status.textContent = '상담 접수 기능 연결을 준비 중입니다. 연락처 확정 후 바로 이용할 수 있습니다.';
+  const form = event.currentTarget;
+  const status = form.querySelector('.form-status');
+  const submitButton = form.querySelector('.submit-button');
+  const formData = new FormData(form);
+
+  formData.append('_subject', '광주·전남 과외 무료 상담 신청');
+  formData.append('_template', 'table');
+  formData.append('_captcha', 'false');
+  formData.append('page', window.location.href);
+  submitButton.disabled = true;
+  status.textContent = '상담 신청을 전송하고 있습니다.';
+
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/sungyeub343@gmail.com', {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: formData,
+    });
+    if (!response.ok) throw new Error('Submission failed');
+    form.reset();
+    status.textContent = '상담 신청이 접수되었습니다. 확인 후 연락드리겠습니다.';
+  } catch (error) {
+    status.textContent = '전송하지 못했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.';
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 
 window.addEventListener('DOMContentLoaded', () => lucide.createIcons());

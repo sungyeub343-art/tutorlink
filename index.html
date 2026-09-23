@@ -183,16 +183,16 @@
         </div>
         <form class="consult-form reveal" id="consult-form">
           <div class="field-row">
-            <label>학생 이름<input type="text" name="studentName" placeholder="이름" required></label>
-            <label>학년·대상<select name="level" required><option value="">선택해 주세요</option><option>초등학생</option><option>중학생</option><option>고등학생</option><option>성인</option></select></label>
+            <label>학생 이름<input type="text" name="학생_이름" placeholder="이름" required></label>
+            <label>학년·대상<select name="학년_대상" required><option value="">선택해 주세요</option><option>초등학생</option><option>중학생</option><option>고등학생</option><option>성인</option></select></label>
           </div>
-          <label>연락처<input type="tel" name="phone" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel" required></label>
+          <label>연락처<input type="tel" name="연락처" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel" required></label>
           <div class="field-row">
-            <label>희망 과목<input type="text" name="subject" placeholder="예: 중등 수학" required></label>
-            <label>수업 지역<input type="text" name="location" placeholder="예: 광주 북구" required></label>
+            <label>희망 과목<input type="text" name="희망_과목" placeholder="예: 중등 수학" required></label>
+            <label>수업 지역<input type="text" name="수업_지역" placeholder="예: 광주 북구" required></label>
           </div>
-          <label>남기실 말씀<textarea name="message" rows="3" placeholder="현재 고민이나 희망 시간을 적어주세요. (선택)"></textarea></label>
-          <label class="consent"><input type="checkbox" name="privacy" required><span>개인정보 수집 및 상담 활용에 동의합니다.</span></label>
+          <label>남기실 말씀<textarea name="상담_내용" rows="3" placeholder="현재 고민이나 희망 시간을 적어주세요. (선택)"></textarea></label>
+          <label class="consent"><input type="checkbox" name="개인정보_동의" value="동의함" required><span>개인정보 수집 및 상담 활용에 동의합니다.</span></label>
           <button class="submit-button" type="submit">무료 상담 신청하기 <i data-lucide="arrow-right" aria-hidden="true"></i></button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
