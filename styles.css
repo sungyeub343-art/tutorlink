@@ -21,6 +21,21 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .skip-link { position: fixed; top: -100px; left: 16px; z-index: 1000; padding: 10px 16px; color: white; background: var(--ink); }
 .skip-link:focus { top: 16px; }
 
+.region-dialog { width: min(960px, calc(100% - 48px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; color: var(--ink); background: var(--paper); border: 2px solid var(--ink); border-radius: 24px; box-shadow: 0 24px 80px rgba(0,0,0,.32); }
+.region-dialog::backdrop { background: rgba(4,35,27,.88); backdrop-filter: blur(5px); }
+.region-dialog-inner { position: relative; padding: 70px; }
+.region-dialog-close { position: absolute; top: 26px; right: 28px; width: 48px; height: 48px; padding: 0; display: grid; place-items: center; color: var(--forest); background: #edf2ef; border: 1px solid #91a69d; border-radius: 50%; cursor: pointer; transition: color .2s, background .2s; }
+.region-dialog-close:hover, .region-dialog-close:focus-visible { color: white; background: var(--forest); }
+.region-dialog-close svg { width: 23px; }
+.region-dialog h2 { max-width: 690px; font-size: clamp(42px, 5.5vw, 66px); line-height: 1.25; }
+.region-dialog h2 + p { margin: 20px 0 32px; color: var(--muted); font-size: 14px; }
+.region-dialog-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.region-dialog-list a { min-height: 68px; padding: 0 18px; display: grid; grid-template-columns: 36px 1fr 20px; align-items: center; gap: 12px; background: #e9f0ed; border: 1px solid #c2d1cb; border-radius: 11px; transition: color .2s, background .2s, border-color .2s, transform .2s; }
+.region-dialog-list a:hover, .region-dialog-list a:focus-visible { color: white; background: var(--forest); border-color: var(--forest); transform: translateY(-2px); }
+.region-dialog-list span { display: grid; width: 30px; height: 30px; place-items: center; color: white; background: var(--coral); border-radius: 50%; font-size: 10px; font-weight: 800; }
+.region-dialog-list strong { font-size: 15px; }
+.region-dialog-list svg { width: 17px; justify-self: end; }
+
 .site-header { position: fixed; z-index: 100; top: 0; left: 0; width: 100%; color: white; transition: background .25s, box-shadow .25s; }
 .site-header.scrolled, .site-header.menu-open { color: var(--ink); background: rgba(247,245,238,.97); box-shadow: 0 1px 0 rgba(21,35,28,.1); }
 .header-inner { width: min(1180px, calc(100% - 48px)); height: 86px; margin: auto; display: flex; align-items: center; justify-content: space-between; }
@@ -174,6 +189,14 @@ h2 em { color: var(--coral); font-style: normal; }
 }
 
 @media (max-width: 600px) {
+  .region-dialog { width: calc(100% - 20px); max-height: calc(100dvh - 20px); border-radius: 18px; }
+  .region-dialog-inner { padding: 58px 20px 24px; }
+  .region-dialog-close { top: 14px; right: 16px; width: 40px; height: 40px; }
+  .region-dialog .section-label { margin-bottom: 14px; }
+  .region-dialog h2 { padding-right: 24px; font-size: 34px; }
+  .region-dialog h2 + p { margin: 14px 0 24px; font-size: 13px; }
+  .region-dialog-list { grid-template-columns: 1fr; }
+  .region-dialog-list a { min-height: 60px; }
   .header-inner, .hero-content, .section-inner { width: min(100% - 36px, 1180px); }
   .header-inner { height: 70px; }
   .brand-mark { width: 35px; height: 35px; }

@@ -1,6 +1,14 @@
 const header = document.querySelector('.site-header');
 const menuButton = document.querySelector('.menu-button');
 const mobileNav = document.querySelector('.mobile-nav');
+const regionDialog = document.querySelector('.region-dialog');
+const regionDialogClose = document.querySelector('.region-dialog-close');
+
+regionDialog.showModal();
+regionDialogClose.addEventListener('click', () => regionDialog.close());
+regionDialog.addEventListener('click', (event) => {
+  if (event.target === regionDialog) regionDialog.close();
+});
 
 const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 24);
 updateHeader();
