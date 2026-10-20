@@ -4,7 +4,29 @@ const mobileNav = document.querySelector('.mobile-nav');
 const regionDialog = document.querySelector('.region-dialog');
 const regionDialogClose = document.querySelector('.region-dialog-close');
 
-regionDialog.showModal();
+const REGION_DIALOG_SEEN_KEY = 'regionDialogSeen';
+const hasSeenRegionDialog = () => {
+  try {
+    return sessionStorage.getItem(REGION_DIALOG_SEEN_KEY) === '1';
+  } catch {
+    return false;
+  }
+};
+const isInternalVisit = () => {
+  try {
+    return document.referrer && new URL(document.referrer).origin === location.origin;
+  } catch {
+    return false;
+  }
+};
+
+// 첫 진입 시에만 지역 선택 창을 띄우고, 사이트 내 이동(다른 페이지에서 돌아오기, #앵커 이동)에는 띄우지 않음
+if (!hasSeenRegionDialog() && !isInternalVisit() && !location.hash) {
+  regionDialog.showModal();
+  try {
+    sessionStorage.setItem(REGION_DIALOG_SEEN_KEY, '1');
+  } catch {}
+}
 regionDialogClose.addEventListener('click', () => regionDialog.close());
 regionDialog.addEventListener('click', (event) => {
   if (event.target === regionDialog) regionDialog.close();
