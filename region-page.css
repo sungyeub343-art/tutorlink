@@ -64,3 +64,6 @@
   .trial-layout, .region-intro-grid { gap: 32px; }
   .level-grid { grid-template-columns: 1fr; }
 }
+.region-intro-copy p { margin: 0 0 18px; color: var(--muted); font-size: 17px; line-height: 1.9; }
+.region-intro-copy p:last-child { margin-bottom: 0; }
+.nearby-sub { margin-top: 32px; }
